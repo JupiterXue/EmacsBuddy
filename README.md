@@ -1,0 +1,2 @@
+# EmacsBuddy
+My Emacs config 
