@@ -1,0 +1,39 @@
+** initialize packages
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://elpa.emacs-china.org/melpa/") t)
+(package-initialize)
+#+END_SRC
+
+
+** config load path
+#+BEGIN_SRC emacs-lisp
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+(require 'pallet)
+(pallet-mode t)
+
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
+(defun open-my-init-file()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+
+(require 'init-packages)
+(require 'init-ui)
+(require 'init-better-defaults)
+(require 'init-org)
+(require 'init-keybindings)
+;; add more personal func
+;(require ')
+
+;; require based on load, load use relative path, load-path use object path
+;; .elc file is faster than .el file
+
+;; require -> load -> load-path -> .elc -> .el
+
+
+(setq custom-file (expand-file-name "lisp/custom.el" user-emacs-directory))
+
+(load-file custom-file)
+#+END_SRC
